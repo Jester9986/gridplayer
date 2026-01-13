@@ -22,7 +22,8 @@ information about the position, sound volume, loops, aspect ratio, etc.
 
 - Cross-platform (Linux, Mac, and Windows)
 - Support for any video and audio format (VLC)
-- Support for (almost) any streaming URLs ([streamlink](https://streamlink.github.io/plugins.html) + [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md))
+- Support for (almost) any streaming
+  URLs ([streamlink](https://streamlink.github.io/plugins.html) + [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md))
 - Hardware & software video decoding
 - Control video aspect, playback speed, zoom
 - Set loop fragments with frame percision
@@ -87,42 +88,43 @@ If you get "GridPlayer is damaged and can't be opened" error, run this command i
 $ sudo xattr -rd com.apple.quarantine /Applications/GridPlayer.app
 ```
 
-### [PIPX](https://github.com/pypa/pipx)
+### Install with [UV](https://docs.astral.sh/uv/)
 
 ```shell
-$ pipx install gridplayer
+$ uv tool install gridplayer
 ```
 
 **Python 3.10 or later required.**
 
-This type of installation will also require VLC installed (Windows & Mac) or a `vlc` package (Linux) present in your system.
+This type of installation will also require VLC installed (Windows & Mac) or a `vlc` package (Linux) present in your
+system.
 Please refer to [VLC official page](https://www.videolan.org/vlc/) for instructions on how to install it.
 
 Some distros (e.g. Ubuntu) might also require `libxcb-xinerama0` package.
 
 ### From source
 
-This project uses [poetry](https://python-poetry.org/) for dependency management and packaging. You will have to install it first. See [poetry official documentation](https://python-poetry.org/docs/) for instructions.
-
 ```shell
-$ git clone https://github.com/vzhd1701/gridplayer.git
-$ cd gridplayer/
-$ poetry install
-$ poetry run gridplayer
+$ uv tool install git+https://github.com/vzhd1701/gridplayer.git
 ```
 
-The same notes about the Python version and external packages from **PIPX** installation apply here.
+The same notes about the Python version and external packages from above apply here.
 
 ## Video Decoder settings
 
 GridPlayer supports two video output modes:
 
-- Hardware (default) mode uses available GPU to render video. This mode offers high performance and is a recommended mode.
-- Software mode is entirely independent of GPU and only uses the CPU to render video. This mode may cause a high CPU load with high-resolution videos.
+- Hardware (default) mode uses available GPU to render video. This mode offers high performance and is a recommended
+  mode.
+- Software mode is entirely independent of GPU and only uses the CPU to render video. This mode may cause a high CPU
+  load with high-resolution videos.
 
-Due to libvlc software library limitations, video decoding is split into parallel processes. You can control how many videos are handled by a single decoder process using the "Videos per process" setting. Setting this option too high may cause a high CPU load and application freeze. The optimal value is 4 videos per process.
+Due to libvlc software library limitations, video decoding is split into parallel processes. You can control how many
+videos are handled by a single decoder process using the "Videos per process" setting. Setting this option too high may
+cause a high CPU load and application freeze. The optimal value is 4 videos per process.
 
-There is also "Hardware SP" mode. It handles video decoding within the same process in which GridPlayer runs. It is not recommended to use with many videos (>4-6) because it may cause high CPU load and application freeze.
+There is also "Hardware SP" mode. It handles video decoding within the same process in which GridPlayer runs. It is not
+recommended to use with many videos (>4-6) because it may cause high CPU load and application freeze.
 
 Due to OS inter-process restrictions, "Hardware SP" is the only available hardware mode in macOS.
 
@@ -144,7 +146,8 @@ You will also see following error if you run GridPlayer from terminal:
 GLib-GIO-WARNING **: Error creating IO channel for /proc/self/mountinfo: Permission denied (g-file-error-quark, 2)
 ```
 
-To fix this, you need to allow GridPlayer snap to access system mount information and disk quotas via Snap Store or by running:
+To fix this, you need to allow GridPlayer snap to access system mount information and disk quotas via Snap Store or by
+running:
 
 ```shell
 $ sudo snap connect gridplayer:mount-observe
@@ -154,13 +157,17 @@ $ sudo snap connect gridplayer:mount-observe
 
 Switch on "Opaque overlay (fix black screen)" checkbox in settings.
 
-Depending on the window manager, the overlay might be a bit glitchy with the hardware decoder. Enabling compositor might help.
+Depending on the window manager, the overlay might be a bit glitchy with the hardware decoder. Enabling compositor might
+help.
 
 ## Geting help
 
-If you found a bug or have a feature request, please [open a new issue](https://github.com/vzhd1701/gridplayer/issues/new/choose).
+If you found a bug or have a feature request,
+please [open a new issue](https://github.com/vzhd1701/gridplayer/issues/new/choose).
 
-If you have a question about the program or have difficulty using it, you are welcome to [the discussions page](https://github.com/vzhd1701/gridplayer/discussions). You can also mail me directly, I'm always happy to help.
+If you have a question about the program or have difficulty using it, you are welcome
+to [the discussions page](https://github.com/vzhd1701/gridplayer/discussions). You can also mail me directly, I'm always
+happy to help.
 
 ## Attributions
 
@@ -258,4 +265,6 @@ This software was build using
 
 ## License
 
-This software is licensed under the terms of the GNU General Public License version 3 (GPLv3). Full text of the license is available in the [LICENSE](https://github.com/vzhd1701/gridplayer/blob/master/LICENSE) file and [online](https://www.gnu.org/licenses/gpl-3.0.html).
+This software is licensed under the terms of the GNU General Public License version 3 (GPLv3). Full text of the license
+is available in the [LICENSE](https://github.com/vzhd1701/gridplayer/blob/master/LICENSE) file
+and [online](https://www.gnu.org/licenses/gpl-3.0.html).
