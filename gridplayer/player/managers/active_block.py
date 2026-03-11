@@ -203,7 +203,7 @@ class ActiveBlockManager(ManagerBase):
             return
 
         self._update_active_block(self._get_hover_video_block())
-        //self.cmd_active("show_overlay")
+        #self.cmd_active("show_overlay")
 
     def update_active_reset(self):
         if is_modal_open():
